@@ -12,7 +12,7 @@ def encrypt_file(passwd, filename):
 	assert os.path.isfile(filename)
 
 	with open(filename, 'rb') as plaintext_file, open(filename + '.tmp', 'wb') as ciphertext_file:
-		# derive AES key from password
+		# derive AES key from password and salt
 		salt = os.urandom(32)
 		aes_key = hashlib.pbkdf2_hmac('sha512', passwd, salt, 200000, dklen=32)
 
@@ -38,7 +38,7 @@ def decrypt_file(passwd, filename):
 	assert os.path.isfile(filename)
 
 	with open(filename, 'rb') as ciphertext_file, open(filename + '.tmp', 'wb') as plaintext_file:
-		# derive AES key from password
+		# derive AES key from password and salt
 		salt = ciphertext_file.read(32)
 		aes_key = hashlib.pbkdf2_hmac('sha512', passwd, salt, 200000, dklen=32)
 
