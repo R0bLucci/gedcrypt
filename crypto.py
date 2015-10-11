@@ -16,7 +16,7 @@ def encrypt_file(passwd, filename):
 		salt = os.urandom(32)
 		aes_key = hashlib.pbkdf2_hmac('sha512', passwd, salt, 200000, dklen=32)
 
-		# save hash of AES key (see decrypt_file function)
+		# save hash of AES key (see decrypt_file())
 		ciphertext_file.write(salt + hashlib.sha512(aes_key).digest())
 
 		# encrypt file
