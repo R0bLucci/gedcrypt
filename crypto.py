@@ -23,8 +23,8 @@ def encrypt_file(passwd, filename):
 		aes_cipher = AES.new(aes_key, mode=AES.MODE_CTR, counter=Counter.new(128))
 
 		while True:
-			# encrypt plaintext a block at a time
-			plaintext = plaintext_file.read(16)
+			# encrypt plaintext 10 MiB at a time
+			plaintext = plaintext_file.read(10485760)
 
 			if len(plaintext) == 0:
 				break
@@ -48,8 +48,8 @@ def decrypt_file(passwd, filename):
 			aes_cipher = AES.new(aes_key, mode=AES.MODE_CTR, counter=Counter.new(128))
 
 			while True:
-				# decrypt ciphertext a block at a time
-				ciphertext = ciphertext_file.read(16)
+				# decrypt ciphertext 10 MiB at a time
+				ciphertext = ciphertext_file.read(10485760)
 
 				if len(ciphertext) == 0:
 					break
