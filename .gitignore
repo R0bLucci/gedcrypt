@@ -11,3 +11,8 @@ gui/out/*
 #GUI xml
 gui.iml
 
+
+*.py
+LICENSE
+README.md
+
