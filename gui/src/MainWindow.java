@@ -33,7 +33,7 @@ public class MainWindow extends Application {
         window.setResizable(false); // window is not resizable
         layout = new GridPane();
         lblEn = new Label("File(s) to encrypt:");
-        lblDe = new Label("File(s) to decrypt");
+        lblDe = new Label("File(s) to decrypt:");
         btnEncrypt = new Button("Encrypt");
         btnDecrypt = new Button("Decrypt");
         layout.setPadding(new Insets(12, 20, 12, 20)); // set padding for right, bottom, left, top
