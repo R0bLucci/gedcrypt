@@ -1,5 +1,17 @@
+#jython third party libraries
 jython-standalone-2.7.0.jar
+
+
+#IDE metadata
 gui/.idea
+
+#IDE .class file output directory
 gui/out/*
+
+#GUI xml
 gui.iml
 
+
+*.py
+LICENSE
+README.md
