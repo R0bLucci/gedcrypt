@@ -1,8 +1,8 @@
-# edcrypt
-A simple file encryption and decryption tool.
+# gedcrypt
+A simple file encryption and decryption tool (GUI).
 
 ### Requirements
 * Python 3
+* JDK and JRE
 
 ### Usage
-python edcrypt.py -e(encrypt)/-d(decrypt) filename password
