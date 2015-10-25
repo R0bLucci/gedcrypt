@@ -5,12 +5,16 @@
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -48,11 +52,19 @@ public class MainWindow extends Application {
         btnDecrypt = new Button("Decrypt");
         btnRemoveDe = new Button("Remove");
 
-        layout.setPadding(new Insets(12, 20, 12, 20)); // set padding for right, bottom, left, top
+        // list controls where selected files will be displayed
         eFiles = new ListView<String>();
         dFiles = new ListView<String>();
 
+        //set padding top - right - bottom - left for the grid pane
+        layout.setPadding(new Insets(12, 20, 12, 20));
+        GridPane.setConstraints(lblEn, 0, 0);
+        GridPane.setConstraints(lblDe, 2, 0);
+        GridPane.setConstraints(eFiles, 0, 1);
+        GridPane.setConstraints(dFiles, 2 , 1);
+
         btnEncrypt.setOnAction( e -> {
+            //TODO
             fileChooser = new FileChooser();
             fileChooser.setTitle("Files to encrypt");
             File selectedFile = fileChooser.showOpenDialog(window);
@@ -64,6 +76,7 @@ public class MainWindow extends Application {
         });
 
         btnDecrypt.setOnAction( e -> {
+            //TODO
             fileChooser = new FileChooser();
             fileChooser.setTitle("Files to decrypt");
             File selectedFile = fileChooser.showOpenDialog(window);
@@ -75,6 +88,7 @@ public class MainWindow extends Application {
         });
 
         btnRemoveEn.setOnAction( e->{
+            //TODO
             ObservableList<String> allItems, selectedItems;
             allItems= eFiles.getItems();
             selectedItems = eFiles.getSelectionModel().getSelectedItems();
@@ -83,6 +97,7 @@ public class MainWindow extends Application {
         });
 
         btnRemoveDe.setOnAction( e->{
+            //TODO
             ObservableList<String> allItems, selectedItems;
             allItems= dFiles.getItems();
             selectedItems = dFiles.getSelectionModel().getSelectedItems();
@@ -90,18 +105,23 @@ public class MainWindow extends Application {
             selectedItems.forEach(allItems::remove);
         });
 
-        layout.getChildren().addAll(lblEn, lblDe,btnEncrypt, btnDecrypt, btnRemoveEn, btnRemoveDe, eFiles, dFiles);
-        layout.setVgap(5);
-        layout.setHgap(5);
-        GridPane.setConstraints(lblEn, 0 , 0);
-        GridPane.setConstraints(lblDe, 2, 0);
-        GridPane.setConstraints(eFiles, 0, 1);
-        GridPane.setConstraints(dFiles, 2 , 1);
-        GridPane.setConstraints(btnEncrypt, 0 , 2);
-        GridPane.setConstraints(btnRemoveEn, 0, 3);
-        GridPane.setConstraints(btnDecrypt, 2 , 2);
-        GridPane.setConstraints(btnRemoveDe, 2, 3);
-        scene = new Scene(layout, 500, 400);
+        // Add labels and list view to the grid pane layout
+        layout.getChildren().addAll(lblEn, lblDe, eFiles, dFiles);
+        layout.setVgap(5); // set vertical margin of 5px
+        layout.setHgap(1); // set horizontal margin of 1 px
+
+        //Horizontal layout for the 4 action buttons
+        HBox hBox = new HBox(btnEncrypt, btnRemoveEn, btnDecrypt, btnRemoveDe);
+        hBox.setSpacing(40);// space buttons by 40px
+        hBox.setAlignment(Pos.BOTTOM_CENTER);
+
+        //vertical parent layout containing the grid pane and the horizontal layout
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(layout, hBox);
+        vBox.setPadding(new Insets(10 , 10 , 10 , 10));
+
+        //set the scene to the stage and show the app
+        scene = new Scene(vBox, 500, 400);
         window.setScene(scene);
         window.show();
     }
