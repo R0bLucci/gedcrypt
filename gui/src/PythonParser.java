@@ -4,14 +4,17 @@
 
 //import java.io.*;
 import java.lang.*;
+
+import org.python.core.PyString;
 import org.python.util.PythonInterpreter;
 
 public class PythonParser {
 
-    public static void main(String[] args){
+    public static void hash(String passdw, String filename) {
 
-
-        PythonInterpreter pyInt = new PythonInterpreter();
+        PythonInterpreter py = new PythonInterpreter();
+        py.set("passdw", new PyString(passdw));
+        py.set("filename", new PyString(filename));
 
 
         /*
@@ -41,5 +44,4 @@ public class PythonParser {
         }
         */
     }
-
 }

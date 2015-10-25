@@ -6,12 +6,8 @@ jython-standalone-2.7.0.jar
 gui/.idea
 
 #IDE .class file output directory
-gui/out/*
-
-#GUI xml
-gui.iml
-
-
+*.class
 *.py
 LICENSE
 README.md
+__pycache__/*
