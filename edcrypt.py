@@ -9,6 +9,7 @@ def fail_exit():
 
 # check command line args are valid
 if len(sys.argv) != 4:
+	print("error")
 	fail_exit()
 
 if not os.path.isfile(sys.argv[2]):
@@ -17,8 +18,17 @@ if not os.path.isfile(sys.argv[2]):
 
 # parse command line args
 if sys.argv[1] == '-e':
+	print(sys.argv[0])
+	print(sys.argv[1])
+	print(sys.argv[2])
+	print(sys.argv[3])
+	print("------------------------------------------------")
 	crypto.encrypt_file(sys.argv[3].encode(), sys.argv[2])
 elif sys.argv[1] == '-d':
+	print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 	crypto.decrypt_file(sys.argv[3].encode(), sys.argv[2])
 else:
+	print(sys.argv[1])
+	print(sys.argv[3])
+	print(sys.argv[2])
 	fail_exit()

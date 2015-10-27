@@ -10,7 +10,6 @@ class HashMismatch(Exception):
 def encrypt_file(passwd, filename):
 	assert isinstance(passwd, bytes)
 	assert os.path.isfile(filename)
-
 	with open(filename, 'rb') as plaintext_file, open(filename + '.tmp', 'wb') as ciphertext_file:
 		# derive AES key from password and salt
 		salt = os.urandom(32)

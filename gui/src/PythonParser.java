@@ -3,45 +3,58 @@
  */
 
 //import java.io.*;
+
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.*;
 
-import org.python.core.PyString;
-import org.python.util.PythonInterpreter;
 
 public class PythonParser {
 
-    public static void hash(String passdw, String filename) {
+    private String[] cmd;
+    private static PythonParser pythonParser;
 
-        PythonInterpreter py = new PythonInterpreter();
-        py.set("passdw", new PyString(passdw));
-        py.set("filename", new PyString(filename));
+    private PythonParser(){
+        cmd = new String[5];
+    }
 
+    //singleton system
+    public static PythonParser getPythonParser(){
+        if(pythonParser == null){
+            pythonParser = new PythonParser();
+        }
+        return pythonParser;
+    }
 
-        /*
-        * The following code is the Java way to run python code without using third party libraries
-        *
-        *
+    public void hash(String option, String filename, String pass) {
 
         try {
-            String pythonPath = "E:\\jkCrypt\\crypto.py";
-            String[] cmd = new String[2 + args.length];
-            cmd[0] = "python";
-            cmd[1] = pythonPath;
-            for (int i = 0; i < args.length; i++) {
-                cmd[i + 2] = args[i];
-            }
+            String pythonPath = new File("").getAbsolutePath() + "/edcrypt.py";
+            cmd[0] = "python"; // python interpreter
+            cmd[1] = pythonPath; // encryption and decryption python script location
+            cmd[2] = option; // option to either run the encrypt or decrypt python script
+            cmd[3] = filename; // full path to the file to encrypt or decrypt
+            cmd[4] = pass; // password provided by the user
 
-            Runtime rt = Runtime.getRuntime();
-            Process pr = rt.exec(cmd);
+            Runtime runtime = Runtime.getRuntime();
+            runtime.exec(cmd);
 
-            BufferedReader buffO = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-            String outPut = "";
-            while ((outPut = buffO.readLine()) != null) {
-                System.out.println(outPut);
-            }
+            /*
+            Code to get console output from Python to Java for debugging purposes
+             */
+
+            //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            //String outPut = "";
+            //while ((outPut = bufferedReader.readLine()) != null) {
+            //  System.out.println(outPut);
+            //}
+
         }catch (IOException e){
-            System.out.println(e);
+            //System.out.println(e);
         }
-        */
+
     }
 }
