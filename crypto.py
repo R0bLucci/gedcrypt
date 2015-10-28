@@ -31,6 +31,8 @@ def encrypt_file(passwd, filename):
 
 			ciphertext_file.write(aes_cipher.encrypt(plaintext))
 
+	if os.name == 'nt':
+		os.remove(filename)
 	os.rename(filename + '.tmp', filename)
 
 def decrypt_file(passwd, filename):
@@ -59,4 +61,7 @@ def decrypt_file(passwd, filename):
 			os.remove(filename + '.tmp')
 			raise HashMismatch('\nThe decryption AES key hash does not match the one in the encrypted file.\nPossible causes: 0. file is not encrypted 1. password is incorrect.')
 
+	if os.name == 'nt':
+		os.remove(filename)
 	os.rename(filename + '.tmp', filename)
+
