@@ -22,3 +22,4 @@ elif sys.argv[1] == '-d':
 	crypto.decrypt_file(sys.argv[3].encode(), sys.argv[2])
 else:
 	fail_exit()
+
