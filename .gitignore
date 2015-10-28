@@ -12,3 +12,4 @@ edcrypt.py
 LICENSE
 README.md
 __pycache__/*
+gui/__pycache__/*
