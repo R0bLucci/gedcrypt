@@ -1,3 +1,4 @@
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,6 +24,7 @@ public class Password {
     public static String getPassword()
     {
         stage = new Stage();
+        stage.setTitle("Password");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         passwordField1 = new PasswordField();
@@ -35,6 +37,7 @@ public class Password {
         error = new Label();
         error.setTextFill(Color.web("#ff1243"));
         VBox vBox = new VBox();
+        vBox.setPadding(new Insets(5, 5, 5, 5));
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(5);
         vBox.getChildren().addAll(error, label1, passwordField1, label2, passwordField2, btnDone);
