@@ -1,2 +1,17 @@
 gui/*
+#jython third party libraries
 jython-standalone-2.7.0.jar
+
+
+#IDE metadata
+gui/.idea
+
+#IDE .class file output directory
+*.class
+crypto.py
+edcrypt.py
+LICENSE
+README.md
+__pycache__/*
+gui/__pycache__/*
+
